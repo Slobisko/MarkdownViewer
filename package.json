@@ -34,9 +34,11 @@
       "*.js",
       "*.html",
       "*.css",
+      "icon.png",
       "node_modules/marked/lib/marked.umd.js"
     ],
     "win": {
+      "icon": "icon.png",
       "target": "nsis"
     },
     "nsis": {

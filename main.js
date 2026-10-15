@@ -34,6 +34,7 @@ app.whenReady().then(() => {
   win = new BrowserWindow({
     width: 1100, height: 800,
     autoHideMenuBar: true,
+    icon: path.join(__dirname, 'icon.png'),
     backgroundColor: nativeTheme.shouldUseDarkColors ? '#1e1e2e' : '#ffffff',
     webPreferences: { preload: path.join(__dirname, 'preload.js') },
   });
