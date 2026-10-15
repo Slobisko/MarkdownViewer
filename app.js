@@ -3,8 +3,9 @@ const $ = s => document.querySelector(s);
 const main = $('main');
 let tabs = [];   // { path, text, scroll }
 let active = -1;
+let theme = 'light';
 
-const save = () => call('saveState', { files: tabs.map(t => t.path), active: tabs[active]?.path, theme: $('#theme').value });
+const save = () => call('saveState', { files: tabs.map(t => t.path), active: tabs[active]?.path, theme });
 const fileName = p => p.split(/[\\/]/).pop();
 
 async function open(paths) {
@@ -68,7 +69,7 @@ $('#content').onclick = e => {
 
 const pick = async () => open(await call('pick'));
 $('#openBtn').onclick = pick;
-$('#theme').onchange = e => { call('setTheme', e.target.value); save(); };
+$('#theme').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; call('setTheme', theme); save(); };
 
 const shortcuts = {
   o: pick,
@@ -86,7 +87,7 @@ on('open', open);
 
 (async () => {
   const s = await call('loadState');
-  $('#theme').value = s.theme || 'system';
+  theme = s.theme === 'dark' ? 'dark' : 'light';
   await open([...(s.files || []), s.active].filter(Boolean));
   await open(await call('argFiles'));
 })();

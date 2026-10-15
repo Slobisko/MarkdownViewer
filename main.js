@@ -30,11 +30,11 @@ app.on('second-instance', (e, argv) => {
 });
 
 app.whenReady().then(() => {
-  nativeTheme.themeSource = api.loadState().theme || 'system';
+  nativeTheme.themeSource = api.loadState().theme === 'dark' ? 'dark' : 'light';
   win = new BrowserWindow({
     width: 1100, height: 800,
     autoHideMenuBar: true,
-    backgroundColor: nativeTheme.shouldUseDarkColors ? '#1e1e2e' : '#eff1f5',
+    backgroundColor: nativeTheme.shouldUseDarkColors ? '#1e1e2e' : '#ffffff',
     webPreferences: { preload: path.join(__dirname, 'preload.js') },
   });
   win.loadFile(path.join(__dirname, 'index.html'));

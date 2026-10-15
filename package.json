@@ -1,6 +1,6 @@
 {
   "name": "markdown-viewer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Jednoduchý prohlížeč Markdown souborů se záložkami",
   "main": "main.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Slobisko/MarkdownViewer.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jan Oršl",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
@@ -29,6 +29,7 @@
   "build": {
     "appId": "cz.slobisko.markdownviewer",
     "productName": "Markdown Viewer",
+    "copyright": "Copyright © 2026 Jan Oršl",
     "files": [
       "*.js",
       "*.html",
