@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <base href="">
+  <title>Markdown Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div id="tabs"></div>
+    <button id="openBtn" title="Otevřít (Ctrl+O)">+</button>
+    <select id="theme" title="Motiv">
+      <option value="system">Podle systému</option>
+      <option value="light">Světlý</option>
+      <option value="dark">Tmavý</option>
+    </select>
+  </header>
+  <main><article id="content"></article></main>
+  <script src="node_modules/marked/lib/marked.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
