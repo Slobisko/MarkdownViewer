@@ -51,13 +51,20 @@ function render() {
   $('base').href = t ? 'file:///' + encodeURI(t.path.replace(/\\/g, '/')) : '';  // relative images/links
   $('#content').innerHTML = t ? marked.parse(t.text)
     : '<p class="empty">Otevřete soubor přes <b>+</b> nebo <kbd>Ctrl+O</kbd>, případně ho sem přetáhněte.</p>';
+  for (const pre of $('#content').querySelectorAll('pre')) pre.insertAdjacentHTML('beforeend', '<button class="copy" title="Kopírovat"><svg class="icon" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><svg class="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>');
   main.scrollTop = t?.scroll || 0;
   document.title = t ? `${fileName(t.path)} – Markdown Viewer` : 'Markdown Viewer';
   save();
 }
 
-// Links: .md opens in a new tab, everything else in the default app/browser.
+// Copy button copies the whole code block. Links: .md opens in a new tab, everything else in the default app/browser.
 $('#content').onclick = e => {
+  const copy = e.target.closest('.copy');
+  if (copy) {
+    navigator.clipboard.writeText(copy.parentElement.querySelector('code')?.textContent ?? '');
+    copy.classList.add('done');
+    return setTimeout(() => copy.classList.remove('done'), 1500);
+  }
   const a = e.target.closest('a[href]');
   if (!a) return;
   e.preventDefault();

@@ -34,9 +34,10 @@ header { display: flex; align-items: stretch; background: var(--bar); border-bot
 .tab button { padding: 0 8px; line-height: 34px; border-radius: 4px; color: var(--muted); }
 .tab button:hover { color: var(--text); background: var(--surface); }
 #openBtn {
-  align-self: center; width: 28px; height: 28px; margin: 0 6px; border-radius: 6px;
-  font-size: 20px; line-height: 1; font-weight: 600; color: #fff; background: var(--accent);
+  align-self: center; display: grid; place-items: center; width: 28px; height: 28px; margin: 0 6px;
+  border-radius: 6px; color: #fff; background: var(--accent);
 }
+#openBtn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
 #openBtn:hover { filter: brightness(1.15); }
 #theme {
   align-self: center; display: grid; place-items: center; width: 30px; height: 30px; margin: 0 8px 0 2px;
@@ -70,6 +71,18 @@ code, kbd {
 }
 pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; overflow: auto; }
 pre code { border: 0; padding: 0; background: none; }
+pre { position: relative; }
+.copy {
+  position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 28px; height: 28px; padding: 0;
+  color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  opacity: 0; transition: opacity .15s;
+}
+.copy svg { grid-area: 1 / 1; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.copy .check { display: none; color: var(--code); stroke-width: 2.6; }
+.copy.done .icon { display: none; }
+.copy.done .check { display: block; }
+pre:hover .copy, .copy.done { opacity: 1; }
+.copy:hover { color: var(--text); }
 
 table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: 14px; }
 th, td { border: 1px solid var(--border); padding: 9px 16px; text-align: left; }
